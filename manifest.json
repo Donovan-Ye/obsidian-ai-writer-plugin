@@ -1,11 +1,11 @@
 {
-  "id": "hello-world",
-  "name": "Hello world",
+  "id": "obsidian-ai-writer-plugin",
+  "name": "obsidian-ai-writer-plugin",
   "version": "0.0.0",
   "minAppVersion": "0.15.0",
-  "description": "Demonstrates some of the capabilities of the Obsidian API.",
-  "author": "Obsidian",
-  "authorUrl": "https://obsidian.md",
-  "fundingUrl": "https://obsidian.md/pricing",
+  "description": "A plugin for Obsidian that uses AI to help you write better and faster.",
+  "author": "Donovan Ye",
+  "authorUrl": "https://github.com/Donovan-Ye/obsidian-ai-writer-plugin",
+  "fundingUrl": "waiting to be created...",
   "isDesktopOnly": false
 }
