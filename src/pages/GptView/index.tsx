@@ -3,6 +3,8 @@ import { ItemView, Notice } from 'obsidian'
 import { StrictMode } from 'react'
 import type { Root } from 'react-dom/client'
 import { createRoot } from 'react-dom/client'
+import type { ArticleProps } from './types'
+import Article from './Artilcle'
 
 export const GPT_VIEW = 'gpt-view'
 
@@ -25,12 +27,10 @@ export class GptView extends ItemView {
     this.root = createRoot(this.containerEl.children[1])
   }
 
-  async generateArticle(content: string = '') {
+  async generateArticle(title: ArticleProps['title'], content: ArticleProps['content']) {
     this.root?.render(
       <StrictMode>
-        <div>
-          <h1>{content}</h1>
-        </div>
+        <Article title={title} content={content} />
       </StrictMode>,
     )
   }
@@ -73,6 +73,7 @@ export async function generateArticle(file: TAbstractFile | null) {
   if (!file)
     return
 
+  const title = file.name === 'Untitled.md' ? null : file.name.split('.')[0]
   const content = await file.vault.adapter.read(file.path)
   if (!content) {
     new Notice('No content found in the file')
@@ -85,6 +86,6 @@ export async function generateArticle(file: TAbstractFile | null) {
 
   if (leaf) {
     const view = leaf.view as GptView
-    view.generateArticle(content)
+    view.generateArticle(title, content)
   }
 }
