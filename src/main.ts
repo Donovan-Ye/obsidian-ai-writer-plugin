@@ -1,32 +1,37 @@
 import { Plugin } from 'obsidian'
 import { GPT_VIEW, GptView, activateGPTView, generateArticle } from 'src/pages/GptView'
 import { GPTSettingTab } from './pages/SettingTab'
+import type { GPTSettings } from './pages/SettingTab/types'
 
-interface MyPluginSettings {
-  mySetting: string
-}
-
-const DEFAULT_SETTINGS: Partial<MyPluginSettings> = {
-  mySetting: 'default',
+const DEFAULT_SETTINGS: Partial<GPTSettings> = {
+  providerType: 'openai',
+  model: 'gpt-3.5-turbo',
 }
 
 const universalHint = 'Generate new article 📝'
 
 export default class MyPlugin extends Plugin {
-  settings: MyPluginSettings
+  settings: GPTSettings
 
-  async loadSettings() {
+  async initSettings() {
     this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData())
   }
 
-  async saveSettings() {
-    await this.saveData(this.settings)
+  // use arrow function to bind this
+  getSettings = () => {
+    return this.settings
+  }
+
+  // use arrow function to bind this
+  saveSettings = async (newSettings: GPTSettings) => {
+    this.settings = newSettings
+    await this.saveData(newSettings)
   }
 
   async onload() {
-    await this.loadSettings()
+    await this.initSettings()
 
-    this.registerView(GPT_VIEW, leaf => new GptView(leaf))
+    this.registerView(GPT_VIEW, leaf => new GptView(leaf, this))
 
     this.addRibbonIcon('message-square', 'Activate GPT view', () => {
       activateGPTView()

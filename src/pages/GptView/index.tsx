@@ -3,6 +3,7 @@ import { ItemView, Notice } from 'obsidian'
 import { StrictMode } from 'react'
 import type { Root } from 'react-dom/client'
 import { createRoot } from 'react-dom/client'
+import type MyPlugin from 'src/main'
 import type { ArticleProps } from './types'
 import Article from './Artilcle'
 
@@ -10,9 +11,11 @@ export const GPT_VIEW = 'gpt-view'
 
 export class GptView extends ItemView {
   root: Root | null = null
+  plugin: MyPlugin
 
-  constructor(leaf: WorkspaceLeaf) {
+  constructor(leaf: WorkspaceLeaf, plugin: MyPlugin) {
     super(leaf)
+    this.plugin = plugin
   }
 
   getViewType() {
@@ -27,10 +30,17 @@ export class GptView extends ItemView {
     this.root = createRoot(this.containerEl.children[1])
   }
 
-  async generateArticle(title: ArticleProps['title'], content: ArticleProps['content']) {
+  async generateArticle(
+    title: ArticleProps['title'],
+    content: ArticleProps['content'],
+  ) {
     this.root?.render(
       <StrictMode>
-        <Article title={title} content={content} />
+        <Article
+          title={title}
+          content={content}
+          getSettings={this.plugin.getSettings}
+        />
       </StrictMode>,
     )
   }
