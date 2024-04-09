@@ -1,19 +1,5 @@
-import type {
-  App,
-  Editor,
-  WorkspaceLeaf,
-} from 'obsidian'
-import {
-  MarkdownView,
-  Menu,
-  Modal,
-  Notice,
-  Plugin,
-  PluginSettingTab,
-  Setting,
-  addIcon,
-} from 'obsidian'
-import { GPT_VIEW, GptView } from 'src/pages/GptView'
+import { Plugin } from 'obsidian'
+import { GPT_VIEW, GptView, activateGPTView, generateArticle } from 'src/pages/GptView'
 import { GPTSettingTab } from './pages/SettingTab'
 
 interface MyPluginSettings {
@@ -37,35 +23,13 @@ export default class MyPlugin extends Plugin {
     await this.saveData(this.settings)
   }
 
-  async activateGPTView() {
-    const { workspace } = this.app
-
-    let leaf: WorkspaceLeaf | null = null
-    const leaves = workspace.getLeavesOfType(GPT_VIEW)
-
-    if (leaves.length > 0) {
-      // A leaf with our view already exists, use that
-      leaf = leaves[0]
-    }
-    else {
-      // Our view could not be found in the workspace, create a new leaf
-      // in the right sidebar for it
-      leaf = workspace.getRightLeaf(false)
-      await leaf?.setViewState({ type: GPT_VIEW, active: true })
-    }
-
-    // "Reveal" the leaf in case it is in a collapsed sidebar
-    if (leaf)
-      workspace.revealLeaf(leaf)
-  }
-
   async onload() {
     await this.loadSettings()
 
     this.registerView(GPT_VIEW, leaf => new GptView(leaf))
 
     this.addRibbonIcon('message-square', 'Activate GPT view', () => {
-      this.activateGPTView()
+      activateGPTView()
     })
 
     this.registerEvent(
@@ -74,7 +38,7 @@ export default class MyPlugin extends Plugin {
           item
             .setTitle(universalHint)
             .onClick(async () => {
-              new Notice(file.path)
+              await generateArticle(file)
             })
         })
       }),
@@ -87,7 +51,7 @@ export default class MyPlugin extends Plugin {
             .setTitle(universalHint)
             .setIcon('document')
             .onClick(async () => {
-              new Notice(view.file?.path ?? 'No file path')
+              await generateArticle(view.file)
             })
         })
       }),
@@ -97,7 +61,9 @@ export default class MyPlugin extends Plugin {
     this.addCommand({
       id: 'generate-new-article',
       name: universalHint,
-      callback: () => { },
+      callback: () => {
+        generateArticle(this.app.workspace.getActiveFile())
+      },
     })
 
     // This adds a settings tab so the user can configure various aspects of the plugin
