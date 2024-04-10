@@ -1,18 +1,29 @@
 import { useEffect, useState } from 'react'
 import LLMProvider from 'src/llmProvider'
 import { Notice } from 'obsidian'
+import { getPrompt } from 'src/prompt'
 import type { ArticleProps } from './types'
 
-function Article({ title, content, getSettings }: ArticleProps) {
+function Article({
+  title,
+  content,
+  getSettings,
+}: ArticleProps) {
   const [messages, setMessages] = useState('')
 
   async function requestGPT() {
     try {
       const provider = new LLMProvider(getSettings())
 
+      const prompt = getPrompt({
+        type: 'wholeNote',
+        title: title ?? '',
+        content,
+      })
+
       const stream = await provider.chat(
         {
-          messages: [{ role: 'user', content: '你好' }],
+          messages: [{ role: 'user', content: prompt }],
           stream: true,
         },
       )
@@ -26,13 +37,12 @@ function Article({ title, content, getSettings }: ArticleProps) {
 
   useEffect(() => {
     requestGPT()
-  }, [])
+  }, [title, content])
 
   return (
     <div>
       <h1>{title}</h1>
 
-      <p>{content}</p>
       <p>{messages}</p>
     </div>
   )

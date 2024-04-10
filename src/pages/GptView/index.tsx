@@ -35,13 +35,13 @@ export class GptView extends ItemView {
     content: ArticleProps['content'],
   ) {
     this.root?.render(
-      <StrictMode>
+      <>
         <Article
           title={title}
           content={content}
           getSettings={this.plugin.getSettings}
         />
-      </StrictMode>,
+      </>,
     )
   }
 
@@ -77,11 +77,15 @@ export async function activateGPTView() {
   // "Reveal" the leaf in case it is in a collapsed sidebar
   if (leaf)
     workspace.revealLeaf(leaf)
+
+  return leaf
 }
 
 export async function generateArticle(file: TAbstractFile | null) {
-  if (!file)
+  if (!file) {
+    new Notice('It seems you have not opened any file')
     return
+  }
 
   const title = file.name === 'Untitled.md' ? null : file.name.split('.')[0]
   const content = await file.vault.adapter.read(file.path)
@@ -90,9 +94,7 @@ export async function generateArticle(file: TAbstractFile | null) {
     return
   }
 
-  await activateGPTView()
-
-  const leaf = await getOrCreateGPTView()
+  const leaf = await activateGPTView()
 
   if (leaf) {
     const view = leaf.view as GptView
