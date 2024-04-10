@@ -2,7 +2,7 @@ export interface ProviderConfig {
   providerType: string
   model: string
   apiKey: string
-  baseUrl: string | null
+  baseUrl: string
 }
 
 export type ChatConfig = {
