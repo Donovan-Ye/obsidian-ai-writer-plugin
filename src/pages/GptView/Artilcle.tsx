@@ -22,16 +22,18 @@ function Article({
     try {
       const newTitle = file.name.split('.')[0]
       const newContent = await this.app.vault.read(file)
+      const settings = getSettings()
       setTitle(newTitle)
       setContent(newContent)
       setGenerateContent('')
       setGenerating(true)
 
-      const provider = new LLMProvider(getSettings())
+      const provider = new LLMProvider(settings)
       const prompt = getPrompt({
         type: 'wholeNote',
         title: newTitle ?? '',
         content: newContent ?? '',
+        articleFormat: settings?.articleFormat,
       })
 
       const stream = await provider.chat(

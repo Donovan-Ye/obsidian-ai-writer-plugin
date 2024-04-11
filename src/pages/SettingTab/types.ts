@@ -1,6 +1,8 @@
 import type { ProviderConfig } from 'src/llmProvider/types'
 
-export type GPTSettings = ProviderConfig
+export type GPTSettings = ProviderConfig & {
+  articleFormat: string
+}
 
 export interface SettingsProps {
   getSettings: () => GPTSettings

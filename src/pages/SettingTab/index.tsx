@@ -2,7 +2,16 @@ import type { App } from 'obsidian'
 import { PluginSettingTab, Setting } from 'obsidian'
 import LLMProvider from 'src/llmProvider'
 import type MyPlugin from 'src/main'
+import { defaultArticleFormat } from 'src/prompt/artileFormats/default'
 import type { GPTSettings } from './types'
+
+export const DEFAULT_SETTINGS: GPTSettings = {
+  providerType: 'openai',
+  model: 'gpt-3.5-turbo',
+  apiKey: '',
+  baseUrl: 'https://api.openai.com',
+  articleFormat: defaultArticleFormat,
+}
 
 export class GPTSettingTab extends PluginSettingTab {
   plugin: MyPlugin

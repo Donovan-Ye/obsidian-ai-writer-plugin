@@ -4,6 +4,7 @@ interface PromptParams {
   type: string
   title: string
   content: string
+  articleFormat: string
 }
 
 function getPromptTemplate(type: string) {
@@ -15,9 +16,15 @@ function getPromptTemplate(type: string) {
   }
 }
 
-export function getPrompt({ type, title, content }: PromptParams) {
+export function getPrompt({
+  type,
+  title,
+  content,
+  articleFormat,
+}: PromptParams) {
   const template = getPromptTemplate(type)
   return template
     .replace(/{{title}}/g, title)
     .replace(/{{content}}/g, content)
+    .replace(/{{format}}/g, articleFormat)
 }

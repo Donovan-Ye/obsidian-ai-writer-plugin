@@ -1,12 +1,7 @@
 import { Plugin } from 'obsidian'
 import { GPT_VIEW, GptView, activateGPTView, generateArticle } from 'src/pages/GptView'
-import { GPTSettingTab } from './pages/SettingTab'
+import { DEFAULT_SETTINGS, GPTSettingTab } from './pages/SettingTab'
 import type { GPTSettings } from './pages/SettingTab/types'
-
-const DEFAULT_SETTINGS: Partial<GPTSettings> = {
-  providerType: 'openai',
-  model: 'gpt-3.5-turbo',
-}
 
 const universalHint = 'Generate new article 📝'
 
