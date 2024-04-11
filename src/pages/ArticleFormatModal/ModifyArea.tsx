@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import ObsidianButton from 'src/components/ObsidianButton'
 import RefactorCodeMirror from 'src/components/RefactorCodeMirror'
 import type MyPlugin from 'src/main'
+import { defaultArticleFormat } from 'src/prompt/artileFormats/default'
 
 interface ModifyAreaProps {
   closeModel: () => void
@@ -12,12 +13,24 @@ interface ModifyAreaProps {
 function ModifyArea({ closeModel, plugin }: ModifyAreaProps) {
   const [articleFormat, setArticleFormat] = useState(plugin?.getSettings()?.articleFormat ?? '')
 
+  const saveArticleFormat = async () => {
+    try {
+      await plugin?.saveSettings({ ...plugin?.getSettings(), articleFormat })
+      new Notice('Article format saved')
+      closeModel()
+    }
+    catch (err) {
+      new Notice('Failed to save article format')
+    }
+  }
+
   return (
     <div>
       <h1 style={{ marginTop: 0 }}>Modify article format</h1>
 
       <RefactorCodeMirror
         value={articleFormat}
+        maxHeight="40rem"
         onChange={(value) => {
           setArticleFormat(value)
         }}
@@ -33,16 +46,16 @@ function ModifyArea({ closeModel, plugin }: ModifyAreaProps) {
 
         <ObsidianButton
           style={{ marginLeft: '1rem' }}
-          onClick={async () => {
-            try {
-              await plugin?.saveSettings({ ...plugin?.getSettings(), articleFormat })
-              new Notice('Article format saved')
-              closeModel()
-            }
-            catch (err) {
-              new Notice('Failed to save article format')
-            }
+          onClick={() => {
+            setArticleFormat(defaultArticleFormat)
           }}
+        >
+          Reset
+        </ObsidianButton>
+
+        <ObsidianButton
+          style={{ marginLeft: '1rem' }}
+          onClick={saveArticleFormat}
         >
           Save
         </ObsidianButton>
