@@ -20,7 +20,7 @@ function Article({
 
   async function requestLLM() {
     try {
-      const newTitle = file.name === 'Untitled.md' ? '' : file.name.split('.')[0]
+      const newTitle = file.name.split('.')[0]
       const newContent = await this.app.vault.read(file)
       setTitle(newTitle)
       setContent(newContent)
