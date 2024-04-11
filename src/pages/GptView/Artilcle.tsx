@@ -4,30 +4,34 @@ import { Notice } from 'obsidian'
 import { getPrompt } from 'src/prompt'
 import CodeMirror from '@uiw/react-codemirror'
 import { okaidia } from '@uiw/codemirror-theme-okaidia'
-import { Button, Tooltip } from 'antd'
+import { Tooltip } from 'antd'
 import { RefreshCcw, ReplaceAll } from 'lucide-react'
 import type { ArticleProps } from './types'
 
 function Article({
-  title,
-  content,
+  file,
   getSettings,
   replaceOriginalNote,
 }: ArticleProps) {
-  const [articleContent, setArticleContent] = useState('')
+  const [title, setTitle] = useState('')
+  const [_content, setContent] = useState('')
+  const [generateContent, setGenerateContent] = useState('')
   const [generating, setGenerating] = useState(false)
 
   async function requestLLM() {
     try {
-      setArticleContent('')
+      const newTitle = file.name === 'Untitled.md' ? '' : file.name.split('.')[0]
+      const newContent = await this.app.vault.read(file)
+      setTitle(newTitle)
+      setContent(newContent)
+      setGenerateContent('')
       setGenerating(true)
-      // setArticleContent(JSON.stringify(getSettings()))
-      const provider = new LLMProvider(getSettings())
 
+      const provider = new LLMProvider(getSettings())
       const prompt = getPrompt({
         type: 'wholeNote',
-        title: title ?? '',
-        content,
+        title: newTitle ?? '',
+        content: newContent ?? '',
       })
 
       const stream = await provider.chat(
@@ -37,7 +41,7 @@ function Article({
         },
       )
       for await (const chunk of stream)
-        setArticleContent(prevMsg => prevMsg + (chunk?.choices?.[0]?.delta?.content ?? ''))
+        setGenerateContent(prevMsg => prevMsg + (chunk?.choices?.[0]?.delta?.content ?? ''))
     }
     catch (err) {
       new Notice(err.message)
@@ -49,7 +53,7 @@ function Article({
 
   useEffect(() => {
     requestLLM()
-  }, [title, content])
+  }, [])
 
   return (
     <div id="ai-writer-plugin">
@@ -78,7 +82,7 @@ function Article({
               disabled={generating}
               style={{ marginLeft: '1rem' }}
               onClick={() => {
-                replaceOriginalNote(articleContent)
+                replaceOriginalNote(generateContent)
               }}
             >
               <ReplaceAll size={14} />
@@ -88,7 +92,7 @@ function Article({
       </div>
 
       <CodeMirror
-        value={articleContent}
+        value={generateContent}
         onCreateEditor={
           () => {
             const cmContent = document.querySelector('#ai-writer-plugin .cm-content')
@@ -111,7 +115,7 @@ function Article({
         }
         theme={okaidia}
         onChange={(value) => {
-          setArticleContent(value)
+          setGenerateContent(value)
         }}
       />
     </div>

@@ -1,8 +1,8 @@
+import type { TAbstractFile } from 'obsidian'
 import type { GPTSettings } from '../SettingTab/types'
 
 export interface ArticleProps {
-  title: string | null
-  content: string
+  file: TAbstractFile
   getSettings: () => GPTSettings
   replaceOriginalNote: (newContent: string) => void
 }

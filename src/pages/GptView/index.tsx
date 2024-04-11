@@ -29,23 +29,16 @@ export class GptView extends ItemView {
     this.root = createRoot(this.containerEl.children[1])
   }
 
-  async generateArticle(
-    title: ArticleProps['title'],
-    content: ArticleProps['content'],
-    file: TAbstractFile,
-  ) {
+  async generateArticle(file: TAbstractFile) {
     this.root?.render(
-      <>
-        <Article
-          title={title}
-          content={content}
-          getSettings={this.plugin.getSettings}
-          replaceOriginalNote={async (newContent: string) => {
-            await this.app.vault.adapter.write(file.path, newContent)
-            new Notice('Content replaced successfully')
-          }}
-        />
-      </>,
+      <Article
+        file={file}
+        getSettings={this.plugin.getSettings}
+        replaceOriginalNote={async (newContent: string) => {
+          await this.app.vault.adapter.write(file.path, newContent)
+          new Notice('Content replaced successfully')
+        }}
+      />,
     )
   }
 
@@ -91,7 +84,6 @@ export async function generateArticle(file: TAbstractFile | null) {
     return
   }
 
-  const title = file.name === 'Untitled.md' ? null : file.name.split('.')[0]
   const content = await file.vault.adapter.read(file.path)
   if (!content) {
     new Notice('No content found in the file')
@@ -102,6 +94,6 @@ export async function generateArticle(file: TAbstractFile | null) {
 
   if (leaf) {
     const view = leaf.view as GptView
-    view.generateArticle(title, content, file)
+    view.generateArticle(file)
   }
 }
