@@ -17,6 +17,8 @@
     "importHelpers": true,
     "inlineSourceMap": true,
     "inlineSources": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "isolatedModules": true
   },
   "include": [
