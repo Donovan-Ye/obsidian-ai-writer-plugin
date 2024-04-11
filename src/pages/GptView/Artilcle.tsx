@@ -69,7 +69,6 @@ function Article({
           }
         }
         height="100%"
-        className="test"
         theme={okaidia}
         onChange={(value) => {
           setArticleContent(value)
