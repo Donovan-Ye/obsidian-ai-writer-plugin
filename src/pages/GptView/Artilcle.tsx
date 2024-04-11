@@ -4,18 +4,24 @@ import { Notice } from 'obsidian'
 import { getPrompt } from 'src/prompt'
 import CodeMirror from '@uiw/react-codemirror'
 import { okaidia } from '@uiw/codemirror-theme-okaidia'
+import { Button, Tooltip } from 'antd'
+import { RefreshCcw, ReplaceAll } from 'lucide-react'
 import type { ArticleProps } from './types'
 
 function Article({
   title,
   content,
   getSettings,
+  replaceOriginalNote,
 }: ArticleProps) {
   const [articleContent, setArticleContent] = useState('')
+  const [generating, setGenerating] = useState(false)
 
-  async function requestGPT() {
+  async function requestLLM() {
     try {
       setArticleContent('')
+      setGenerating(true)
+      // setArticleContent(JSON.stringify(getSettings()))
       const provider = new LLMProvider(getSettings())
 
       const prompt = getPrompt({
@@ -36,15 +42,50 @@ function Article({
     catch (err) {
       new Notice(err.message)
     }
+    finally {
+      setGenerating(false)
+    }
   }
 
   useEffect(() => {
-    requestGPT()
+    requestLLM()
   }, [title, content])
 
   return (
     <div id="ai-writer-plugin">
-      <h1>{title}</h1>
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+      }}
+      >
+        <h1>{title}</h1>
+
+        <div>
+          <Tooltip title="regenerate">
+            <button
+              className="mod-cta"
+              disabled={generating}
+              onClick={requestLLM}
+            >
+              <RefreshCcw size={14} />
+            </button>
+          </Tooltip>
+
+          <Tooltip title="replace original note">
+            <button
+              className="mod-cta"
+              disabled={generating}
+              style={{ marginLeft: '1rem' }}
+              onClick={() => {
+                replaceOriginalNote(articleContent)
+              }}
+            >
+              <ReplaceAll size={14} />
+            </button>
+          </Tooltip>
+        </div>
+      </div>
 
       <CodeMirror
         value={articleContent}

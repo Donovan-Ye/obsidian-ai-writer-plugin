@@ -1,4 +1,4 @@
-import type { App, TAbstractFile, WorkspaceLeaf } from 'obsidian'
+import type { App, TAbstractFile, TFile, WorkspaceLeaf } from 'obsidian'
 import { ItemView, Notice } from 'obsidian'
 import { StrictMode } from 'react'
 import type { Root } from 'react-dom/client'
@@ -33,6 +33,7 @@ export class GptView extends ItemView {
   async generateArticle(
     title: ArticleProps['title'],
     content: ArticleProps['content'],
+    file: TFile,
   ) {
     this.root?.render(
       <>
@@ -40,6 +41,10 @@ export class GptView extends ItemView {
           title={title}
           content={content}
           getSettings={this.plugin.getSettings}
+          replaceOriginalNote={async (newContent: string) => {
+            await this.app.vault.adapter.write(file.path, newContent)
+            new Notice('Content replaced successfully')
+          }}
         />
       </>,
     )
@@ -98,6 +103,6 @@ export async function generateArticle(file: TAbstractFile | null) {
 
   if (leaf) {
     const view = leaf.view as GptView
-    view.generateArticle(title, content)
+    view.generateArticle(title, content, file)
   }
 }

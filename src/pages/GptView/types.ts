@@ -4,4 +4,5 @@ export interface ArticleProps {
   title: string | null
   content: string
   getSettings: () => GPTSettings
+  replaceOriginalNote: (newContent: string) => void
 }
