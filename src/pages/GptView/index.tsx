@@ -1,6 +1,5 @@
 import type { App, TAbstractFile, TFile, WorkspaceLeaf } from 'obsidian'
 import { ItemView, Notice } from 'obsidian'
-import { StrictMode } from 'react'
 import type { Root } from 'react-dom/client'
 import { createRoot } from 'react-dom/client'
 import type MyPlugin from 'src/main'
@@ -33,7 +32,7 @@ export class GptView extends ItemView {
   async generateArticle(
     title: ArticleProps['title'],
     content: ArticleProps['content'],
-    file: TFile,
+    file: TAbstractFile,
   ) {
     this.root?.render(
       <>
