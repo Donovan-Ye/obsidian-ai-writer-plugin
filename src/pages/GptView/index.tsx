@@ -1,9 +1,8 @@
-import type { App, TAbstractFile, TFile, WorkspaceLeaf } from 'obsidian'
+import type { App, TAbstractFile, WorkspaceLeaf } from 'obsidian'
 import { ItemView, Notice } from 'obsidian'
 import type { Root } from 'react-dom/client'
 import { createRoot } from 'react-dom/client'
 import type MyPlugin from 'src/main'
-import type { ArticleProps } from './types'
 import Article from './Artilcle'
 
 export const GPT_VIEW = 'gpt-view'
@@ -34,6 +33,7 @@ export class GptView extends ItemView {
       <Article
         file={file}
         getSettings={this.plugin.getSettings}
+        openModifyArticleFormatModal={this.plugin.openModifyArticleFormatModal}
         replaceOriginalNote={async (newContent: string) => {
           await this.app.vault.adapter.write(file.path, newContent)
           new Notice('Content replaced successfully')

@@ -2,15 +2,24 @@ import { useEffect, useState } from 'react'
 import LLMProvider from 'src/llmProvider'
 import { Notice } from 'obsidian'
 import { getPrompt } from 'src/prompt'
-import CodeMirror from '@uiw/react-codemirror'
-import { okaidia } from '@uiw/codemirror-theme-okaidia'
 import { Tooltip } from 'antd'
-import { RefreshCcw, ReplaceAll } from 'lucide-react'
-import type { ArticleProps } from './types'
+import { PenLine, RefreshCcw, ReplaceAll } from 'lucide-react'
+import ObsidianButton from 'src/components/ObsidianButton'
+import type { TAbstractFile } from 'obsidian'
+import RefactorCodeMirror from 'src/components/RefactorCodeMirror'
+import type { GPTSettings } from '../SettingTab/types'
+
+interface ArticleProps {
+  file: TAbstractFile
+  getSettings: () => GPTSettings
+  openModifyArticleFormatModal: () => void
+  replaceOriginalNote: (newContent: string) => void
+}
 
 function Article({
   file,
   getSettings,
+  openModifyArticleFormatModal,
   replaceOriginalNote,
 }: ArticleProps) {
   const [title, setTitle] = useState('')
@@ -58,7 +67,7 @@ function Article({
   }, [])
 
   return (
-    <div id="ai-writer-plugin">
+    <>
       <div style={{
         display: 'flex',
         justifyContent: 'space-between',
@@ -69,18 +78,25 @@ function Article({
 
         <div>
           <Tooltip title="regenerate">
-            <button
-              className="mod-cta"
+            <ObsidianButton
               disabled={generating}
               onClick={requestLLM}
             >
               <RefreshCcw size={14} />
-            </button>
+            </ObsidianButton>
+          </Tooltip>
+
+          <Tooltip title="modify article format">
+            <ObsidianButton
+              style={{ marginLeft: '1rem' }}
+              onClick={openModifyArticleFormatModal}
+            >
+              <PenLine size={14} />
+            </ObsidianButton>
           </Tooltip>
 
           <Tooltip title="replace original note">
-            <button
-              className="mod-cta"
+            <ObsidianButton
               disabled={generating}
               style={{ marginLeft: '1rem' }}
               onClick={() => {
@@ -88,39 +104,18 @@ function Article({
               }}
             >
               <ReplaceAll size={14} />
-            </button>
+            </ObsidianButton>
           </Tooltip>
         </div>
       </div>
 
-      <CodeMirror
+      <RefactorCodeMirror
         value={generateContent}
-        onCreateEditor={
-          () => {
-            const cmContent = document.querySelector('#ai-writer-plugin .cm-content')
-            if (cmContent) {
-              (cmContent as HTMLElement).style.whiteSpace = 'break-spaces';
-              (cmContent as HTMLElement).style.wordBreak = 'break-word';
-              (cmContent as HTMLElement).style.overflowWrap = 'anywhere'
-
-              const wrapper = document.createElement('div')
-              wrapper.style.display = 'flex'
-              wrapper.style.flexDirection = 'column'
-              wrapper.style.alignItems = 'stretch'
-              wrapper.style.width = '100%'
-              wrapper.style.minHeight = '100%'
-
-              cmContent.parentNode?.insertBefore(wrapper, cmContent)
-              wrapper.appendChild(cmContent)
-            }
-          }
-        }
-        theme={okaidia}
         onChange={(value) => {
           setGenerateContent(value)
         }}
       />
-    </div>
+    </>
   )
 }
 

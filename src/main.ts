@@ -2,6 +2,7 @@ import { Plugin } from 'obsidian'
 import { GPT_VIEW, GptView, activateGPTView, generateArticle } from 'src/pages/GptView'
 import { DEFAULT_SETTINGS, GPTSettingTab } from './pages/SettingTab'
 import type { GPTSettings } from './pages/SettingTab/types'
+import { ArticleFormatModal } from './pages/ArticleFormatModal'
 
 const universalHint = 'Generate new article 📝'
 
@@ -21,6 +22,10 @@ export default class MyPlugin extends Plugin {
   saveSettings = async (newSettings: GPTSettings) => {
     this.settings = newSettings
     await this.saveData(newSettings)
+  }
+
+  openModifyArticleFormatModal = () => {
+    new ArticleFormatModal(this.app, this).open()
   }
 
   async onload() {
@@ -57,12 +62,19 @@ export default class MyPlugin extends Plugin {
       }),
     )
 
-    // This adds a simple command that can be triggered anywhere
     this.addCommand({
       id: 'generate-new-article',
       name: universalHint,
       callback: () => {
         generateArticle(this.app.workspace.getActiveFile())
+      },
+    })
+
+    this.addCommand({
+      id: 'modify-article-format',
+      name: 'Modify article format 📝',
+      callback: () => {
+        this.openModifyArticleFormatModal()
       },
     })
 
