@@ -19,10 +19,12 @@
     "@uiw/codemirror-theme-okaidia": "^4.21.25",
     "@uiw/react-codemirror": "^4.21.25",
     "antd": "^5.16.1",
+    "i18next": "^23.11.1",
     "lucide-react": "^0.367.0",
     "openai": "^4.33.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-i18next": "^14.1.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.12.2",

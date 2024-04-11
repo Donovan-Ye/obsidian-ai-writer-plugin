@@ -1,0 +1,16 @@
+{
+  "Generate new article": "Generate new article 📝",
+  "Modify article template": "Modify article template 📝",
+  "modify article template": "Modify article template",
+  "Cancel": "Cancel",
+  "Reset": "Reset",
+  "Save": "Save",
+  "Regenerate": "Regenerate",
+  "Replace original note": "Replace original note",
+  "Save successfully": "Save successfully",
+  "Save failed": "Save failed",
+  "Replace successfully": "Replace successfully",
+  "Replace failed": "Replace failed",
+  "No file": "It seems you have not opened any file",
+  "No content": "It seems there is no content in the file, please add some content before generating~"
+}

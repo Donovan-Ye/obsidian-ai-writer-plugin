@@ -3,6 +3,7 @@ import { ItemView, Notice } from 'obsidian'
 import type { Root } from 'react-dom/client'
 import { createRoot } from 'react-dom/client'
 import type MyPlugin from 'src/main'
+import { t } from 'i18next'
 import Article from './Artilcle'
 
 export const GPT_VIEW = 'gpt-view'
@@ -35,8 +36,13 @@ export class GptView extends ItemView {
         getSettings={this.plugin.getSettings}
         openModifyArticleFormatModal={this.plugin.openModifyArticleFormatModal}
         replaceOriginalNote={async (newContent: string) => {
-          await this.app.vault.adapter.write(file.path, newContent)
-          new Notice('Content replaced successfully')
+          try {
+            await this.app.vault.adapter.write(file.path, newContent)
+            new Notice(t('Replace successfully'))
+          }
+          catch (err) {
+            new Notice(t('Replace failed'))
+          }
         }}
       />,
     )
@@ -80,13 +86,13 @@ export async function activateGPTView() {
 
 export async function generateArticle(file: TAbstractFile | null) {
   if (!file) {
-    new Notice('It seems you have not opened any file')
+    new Notice(t('No file'))
     return
   }
 
   const content = await file.vault.adapter.read(file.path)
   if (!content) {
-    new Notice('No content found in the file')
+    new Notice(t('No content'))
     return
   }
 

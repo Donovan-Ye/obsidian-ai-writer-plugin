@@ -1,10 +1,13 @@
 import { Plugin } from 'obsidian'
 import { GPT_VIEW, GptView, activateGPTView, generateArticle } from 'src/pages/GptView'
+import { t } from 'i18next'
 import { DEFAULT_SETTINGS, GPTSettingTab } from './pages/SettingTab'
 import type { GPTSettings } from './pages/SettingTab/types'
 import { ArticleFormatModal } from './pages/ArticleFormatModal'
+// internationalization
+import './i18n'
 
-const universalHint = 'Generate new article 📝'
+const generateArticleHint = t('Generate new article')
 
 export default class MyPlugin extends Plugin {
   settings: GPTSettings
@@ -33,15 +36,11 @@ export default class MyPlugin extends Plugin {
 
     this.registerView(GPT_VIEW, leaf => new GptView(leaf, this))
 
-    this.addRibbonIcon('message-square', 'Activate GPT view', () => {
-      activateGPTView()
-    })
-
     this.registerEvent(
       this.app.workspace.on('file-menu', (menu, file) => {
         menu.addItem((item) => {
           item
-            .setTitle(universalHint)
+            .setTitle(generateArticleHint)
             .onClick(async () => {
               await generateArticle(file)
             })
@@ -53,7 +52,7 @@ export default class MyPlugin extends Plugin {
       this.app.workspace.on('editor-menu', (menu, editor, view) => {
         menu.addItem((item) => {
           item
-            .setTitle(universalHint)
+            .setTitle(generateArticleHint)
             .setIcon('document')
             .onClick(async () => {
               await generateArticle(view.file)
@@ -64,7 +63,7 @@ export default class MyPlugin extends Plugin {
 
     this.addCommand({
       id: 'generate-new-article',
-      name: universalHint,
+      name: generateArticleHint,
       callback: () => {
         generateArticle(this.app.workspace.getActiveFile())
       },
@@ -72,7 +71,7 @@ export default class MyPlugin extends Plugin {
 
     this.addCommand({
       id: 'modify-article-format',
-      name: 'Modify article format 📝',
+      name: t('Modify article template'),
       callback: () => {
         this.openModifyArticleFormatModal()
       },

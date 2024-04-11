@@ -1,0 +1,16 @@
+{
+  "Generate new article": "生成文章 📝",
+  "Modify article template": "修改文章模版 📝",
+  "modify article template": "修改文章模版",
+  "Cancel": "取消",
+  "Reset": "重置",
+  "Save": "保存",
+  "Regenerate": "重新生成",
+  "Replace original note": "替换原始笔记",
+  "Save successfully": "保存成功",
+  "Save failed": "保存失败",
+  "Replace successfully": "替换成功",
+  "Replace failed": "替换失败",
+  "No file": "看起来你没有打开任何文件",
+  "No content": "看起来文件里没有任何内容，请在生成之前添加一些内容吧～"
+}

@@ -7,6 +7,7 @@ import { PenLine, RefreshCcw, ReplaceAll } from 'lucide-react'
 import ObsidianButton from 'src/components/ObsidianButton'
 import type { TAbstractFile } from 'obsidian'
 import RefactorCodeMirror from 'src/components/RefactorCodeMirror'
+import { useTranslation } from 'react-i18next'
 import type { GPTSettings } from '../SettingTab/types'
 
 interface ArticleProps {
@@ -22,6 +23,7 @@ function Article({
   openModifyArticleFormatModal,
   replaceOriginalNote,
 }: ArticleProps) {
+  const { t } = useTranslation()
   const [title, setTitle] = useState('')
   const [_content, setContent] = useState('')
   const [generateContent, setGenerateContent] = useState('')
@@ -77,7 +79,7 @@ function Article({
         <h1>{title}</h1>
 
         <div>
-          <Tooltip title="regenerate">
+          <Tooltip title={t('Regenerate')}>
             <ObsidianButton
               disabled={generating}
               onClick={requestLLM}
@@ -86,7 +88,7 @@ function Article({
             </ObsidianButton>
           </Tooltip>
 
-          <Tooltip title="modify article format">
+          <Tooltip title={t('modify article template')}>
             <ObsidianButton
               style={{ marginLeft: '1rem' }}
               onClick={openModifyArticleFormatModal}
@@ -95,7 +97,7 @@ function Article({
             </ObsidianButton>
           </Tooltip>
 
-          <Tooltip title="replace original note">
+          <Tooltip title={t('Replace original note')}>
             <ObsidianButton
               disabled={generating}
               style={{ marginLeft: '1rem' }}

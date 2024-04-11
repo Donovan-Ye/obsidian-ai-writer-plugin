@@ -1,5 +1,6 @@
 import { Notice } from 'obsidian'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import ObsidianButton from 'src/components/ObsidianButton'
 import RefactorCodeMirror from 'src/components/RefactorCodeMirror'
 import type MyPlugin from 'src/main'
@@ -11,22 +12,23 @@ interface ModifyAreaProps {
 }
 
 function ModifyArea({ closeModel, plugin }: ModifyAreaProps) {
+  const { t } = useTranslation()
   const [articleFormat, setArticleFormat] = useState(plugin?.getSettings()?.articleFormat ?? '')
 
   const saveArticleFormat = async () => {
     try {
       await plugin?.saveSettings({ ...plugin?.getSettings(), articleFormat })
-      new Notice('Article format saved')
+      new Notice(t('Save successfully'))
       closeModel()
     }
     catch (err) {
-      new Notice('Failed to save article format')
+      new Notice(t('Save failed'))
     }
   }
 
   return (
     <div>
-      <h1 style={{ marginTop: 0 }}>Modify article format</h1>
+      <h1 style={{ marginTop: 0 }}>{t('Modify article template')}</h1>
 
       <RefactorCodeMirror
         value={articleFormat}
@@ -42,7 +44,9 @@ function ModifyArea({ closeModel, plugin }: ModifyAreaProps) {
         marginTop: '1rem',
       }}
       >
-        <ObsidianButton onClick={closeModel}> Cancel </ObsidianButton>
+        <ObsidianButton onClick={closeModel}>
+          {t('Cancel')}
+        </ObsidianButton>
 
         <ObsidianButton
           style={{ marginLeft: '1rem' }}
@@ -50,14 +54,14 @@ function ModifyArea({ closeModel, plugin }: ModifyAreaProps) {
             setArticleFormat(defaultArticleFormat)
           }}
         >
-          Reset
+          {t('Reset')}
         </ObsidianButton>
 
         <ObsidianButton
           style={{ marginLeft: '1rem' }}
           onClick={saveArticleFormat}
         >
-          Save
+          {t('Save')}
         </ObsidianButton>
       </div>
     </div>

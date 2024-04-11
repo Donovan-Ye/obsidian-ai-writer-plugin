@@ -11,6 +11,7 @@
     "baseUrl": ".",
     "module": "ESNext",
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "allowJs": true,
     "strictNullChecks": true,
     "noImplicitAny": true,
