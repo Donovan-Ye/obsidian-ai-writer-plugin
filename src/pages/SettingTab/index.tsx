@@ -11,7 +11,7 @@ export const DEFAULT_SETTINGS: GPTSettings = {
   providerType: 'openai',
   model: 'gpt-3.5-turbo',
   apiKey: '',
-  baseUrl: 'https://api.openai.com',
+  baseUrl: 'https://api.openai.com/v1',
   articleFormat: defaultArticleFormat(),
   articleLanguage: getObsidianLanguageCode(),
 }
