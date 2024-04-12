@@ -45,6 +45,7 @@ function Article({
         title: newTitle ?? '',
         content: newContent ?? '',
         articleFormat: settings?.articleFormat,
+        articleLanguage: settings?.articleLanguage,
       })
 
       const stream = await provider.chat(

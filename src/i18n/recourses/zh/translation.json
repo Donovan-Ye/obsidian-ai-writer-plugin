@@ -12,5 +12,8 @@
   "Replace successfully": "替换成功",
   "Replace failed": "替换失败",
   "No file": "看起来你没有打开任何文件",
-  "No content": "看起来文件里没有任何内容，请在生成之前添加一些内容吧～"
+  "No content": "看起来文件里没有任何内容，请在生成之前添加一些内容吧～",
+  "Default service provider": "默认服务提供商",
+  "Model": "模型",
+  "Target article language": "目标文章语言"
 }

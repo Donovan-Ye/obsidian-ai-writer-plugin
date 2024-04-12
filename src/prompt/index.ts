@@ -1,3 +1,4 @@
+import { getNativeLanguage } from 'src/i18n'
 import wholeNotePrompt from './templates/wholeNote'
 
 interface PromptParams {
@@ -5,6 +6,7 @@ interface PromptParams {
   title: string
   content: string
   articleFormat: string
+  articleLanguage: string
 }
 
 function getPromptTemplate(type: string) {
@@ -21,10 +23,12 @@ export function getPrompt({
   title,
   content,
   articleFormat,
+  articleLanguage,
 }: PromptParams) {
   const template = getPromptTemplate(type)
   return template
     .replace(/{{title}}/g, title)
     .replace(/{{content}}/g, content)
     .replace(/{{format}}/g, articleFormat)
+    .replace(/{{language}}/g, getNativeLanguage(articleLanguage))
 }

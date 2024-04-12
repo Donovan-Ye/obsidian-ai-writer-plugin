@@ -3,6 +3,8 @@ import { PluginSettingTab, Setting } from 'obsidian'
 import LLMProvider from 'src/llmProvider'
 import type MyPlugin from 'src/main'
 import { defaultArticleFormat } from 'src/prompt/artileFormats/default'
+import { getObsidianLanguageCode, getObsidianNativeLanguage, languageMap } from 'src/i18n'
+import { t } from 'i18next'
 import type { GPTSettings } from './types'
 
 export const DEFAULT_SETTINGS: GPTSettings = {
@@ -11,6 +13,7 @@ export const DEFAULT_SETTINGS: GPTSettings = {
   apiKey: '',
   baseUrl: 'https://api.openai.com',
   articleFormat: defaultArticleFormat,
+  articleLanguage: getObsidianLanguageCode(),
 }
 
 export class GPTSettingTab extends PluginSettingTab {
@@ -38,17 +41,13 @@ export class GPTSettingTab extends PluginSettingTab {
       const { containerEl } = this
       containerEl.empty()
 
-      const { providerType, model } = this.plugin.settings
+      const { providerType, model, apiKey, baseUrl, articleLanguage } = this.plugin.settings
       const providerOptions: Record<string, string> = {}
       for (const key of LLMProvider.PROVIDER_TYPE_MAP.keys())
         providerOptions[key] = key
-      const modelOptions: Record<string, string> = {}
-      const modelList = await LLMProvider.getModelList(providerType)
-      for (const key of modelList)
-        modelOptions[key] = key
 
       new Setting(containerEl)
-        .setName('Default service provider')
+        .setName(t('Default service provider'))
         .addDropdown((dropdown) => {
           dropdown
             .addOptions(providerOptions)
@@ -56,8 +55,13 @@ export class GPTSettingTab extends PluginSettingTab {
             .onChange(value => saveChange('providerType', value, true))
         })
 
+      const modelOptions: Record<string, string> = {}
+      const modelList = await LLMProvider.getModelList(providerType)
+      for (const key of modelList)
+        modelOptions[key] = key
+
       new Setting(containerEl)
-        .setName('Model')
+        .setName(t('Model'))
         .addDropdown((dropdown) => {
           dropdown
             .addOptions(modelOptions)
@@ -70,7 +74,7 @@ export class GPTSettingTab extends PluginSettingTab {
         .addText((text) => {
           text
             .setPlaceholder('API Key')
-            .setValue(this.plugin.settings.apiKey)
+            .setValue(apiKey)
             .onChange(value => saveChange('apiKey', value))
         })
 
@@ -79,7 +83,7 @@ export class GPTSettingTab extends PluginSettingTab {
         .addText((text) => {
           text
             .setPlaceholder('Base URL')
-            .setValue(this.plugin.settings.baseUrl)
+            .setValue(baseUrl)
             .onChange(value => saveChange('baseUrl', value))
         }).addButton((button) => {
           button
@@ -87,6 +91,19 @@ export class GPTSettingTab extends PluginSettingTab {
             .onClick(async () => {
               await saveChange('baseUrl', 'https://api.openai.com', true)
             })
+        })
+
+      const languageOptions: Record<string, string> = {}
+      for (const [key, value] of languageMap)
+        languageOptions[key] = value
+
+      new Setting(containerEl)
+        .setName(t('Target article language'))
+        .addDropdown((dropdown) => {
+          dropdown
+            .addOptions(languageOptions)
+            .setValue(articleLanguage)
+            .onChange(value => saveChange('articleLanguage', value))
         })
     }
 

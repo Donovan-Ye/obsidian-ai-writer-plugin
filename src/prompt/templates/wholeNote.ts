@@ -1,16 +1,26 @@
 const wholeNotePrompt = `
 <prompt_explanation>
-作为一位经验丰富的内容创作者，你的任务是将一系列相关的知识片段转化成一篇既生动又专业的文章，文章格式参考response_format里面的格式。这篇文章需要围绕指定的【标题】进行编排，并且要融入所有给定的知识片段。在创作过程中，应确保文章的流畅性和逻辑性，同时保持读者的兴趣，呈现出专业而深入的分析。
+As an experienced content creator fluent in {{language}}, your task is to translate and transform a series of knowledge snippets provided in various languages into a cohesive and professional article in {{language}}.
+ Follow the formatting and structural guidelines specified in <response_format>, which must also be adhered to in {{language}}. The article should be structured around the provided [title] and incorporate all the given knowledge fragments effectively.
 
-首先，你需要对给出的知识片段进行彻底的理解和分析，确定每一片段的关键信息和它们之间的逻辑关系。接着，思考如何将这些知识片段有机地结合进文章，使其成为一个连贯的整体。
+### Process Overview:
 
-在规划文章结构时，要注意引导读者逐步深入了解主题，同时确保各个部分之间的过渡自然而流畅。每一个知识片段都应该在文章中找到合适的位置。
+1. **Translate and Analyze Fragments:**
+   - Translate and thoroughly understand each knowledge fragment, regardless of its original language, to extract key information and discern the logical relationships among them.
 
-接下来，用你的创造力和写作技巧，将这些知识片段织入文章，使之生动而有吸引力。在此过程中，保持语言的专业性和准确性，确保文章反映出深度和权威性。
+2. **Integrate Knowledge:**
+   - Determine how to seamlessly integrate these translated knowledge fragments into the article to ensure it forms a coherent whole. Plan how each fragment fits logically within the overall structure.
 
-最后，对整篇文章进行复查，确保没有遗漏任何重要信息，并且文章的表达清晰、准确，并且遵循Markdown格式规范。同时，确保文章【标题】与内容的一致性和相关性。
+3. **Structure the Article:**
+   - Gradually guide readers into a deeper understanding of the topic, ensuring smooth transitions between sections. Each section should logically lead to the next, with each knowledge fragment appropriately placed.
 
-通过这个过程，你将创作出一篇既展现专业知识，又具有吸引力的文章，完全符合给定的【标题】。
+4. **Creative Writing:**
+   - Utilize your creativity and writing skills to weave the translated knowledge fragments into an engaging narrative. Maintain a professional and accurate use of {{language}} throughout the article to reflect depth and credibility.
+
+5. **Review and Refine:**
+   - Review the entire article to ensure no important information is overlooked and that all expressions are clear and accurate. Adhere to the Markdown formatting standards and ensure that the content aligns well with the [title] and the response format <response_format>, all in {{language}}.
+
+By following this process, you will create a compelling and authoritative article entirely in {{language}} that aligns with the specified [title] and meets the formatting and structural requirements as outlined in <response_format>.
 </prompt_explanation>
 
 <response_format>
@@ -18,12 +28,12 @@ const wholeNotePrompt = `
 </response_format>
 
 
-【标题】是：{{title}}
+The title is：{{title}}
 
-知识片段如下：\n\n
+The knowledge fragments are：\n\n
 {{content}}
 
-请根据以上要求，撰写一篇关于《{{title}}》的文章。
+Please write an article about "{{title}}" in {{language}} according to the above requirements. 
 `
 
 export default wholeNotePrompt
