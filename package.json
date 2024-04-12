@@ -10,11 +10,11 @@
   "keywords": [],
   "main": "main.js",
   "scripts": {
-    "dev": "npm run dev:css && node esbuild.config.mjs",
+    "dev": "npm run build:css && node esbuild.config.mjs",
     "build": "npm run build:css && tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
     "fix": "eslint . --fix",
     "build:css": "tailwindcss -i ./src/main.css -o styles.css",
-    "dev:css": "npm run build:css --watch",
+    "dev:css": "tailwindcss -i ./src/main.css -o styles.css --watch",
     "version": "node version-bump.mjs && npm run fix && git add manifest.json versions.json"
   },
   "dependencies": {

@@ -127,6 +127,14 @@ function Article({
           setGenerateContent(value)
         }}
       />
+
+      {
+        generating && (
+          <div className="plg-aw-flex plg-aw-justify-end plg-aw-items-center">
+            <div className="gptView-article-loader plg-aw-mt-1"></div>
+          </div>
+        )
+      }
     </>
   )
 }

@@ -1,4 +1,5 @@
 import process from 'node:process'
+import { exec } from 'node:child_process'
 import esbuild from 'esbuild'
 import builtins from 'builtin-modules'
 
@@ -38,6 +39,16 @@ const context = await esbuild.context({
   sourcemap: prod ? false : 'inline',
   treeShaking: true,
   outfile: 'main.js',
+  plugins: [{
+    name: 'rebuild-css',
+    setup(build) {
+      build.onEnd(() => {
+        // eslint-disable-next-line no-console
+        console.log('[watch] rebuild CSS...')
+        exec('npm run build:css')
+      })
+    },
+  }],
 })
 
 if (prod) {
