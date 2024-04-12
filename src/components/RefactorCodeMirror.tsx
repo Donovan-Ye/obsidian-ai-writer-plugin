@@ -2,13 +2,15 @@ import CodeMirror from '@uiw/react-codemirror'
 import { okaidia } from '@uiw/codemirror-theme-okaidia'
 
 function RefactorCodeMirror(props: React.ComponentProps<typeof CodeMirror>) {
+  // Generate a unique id for each CodeMirror instance. Use Date is a simple way XD.
+  const wrapperId = `ai-writer-plugin-CM-${Date.now()}`
   return (
-    <div id="ai-writer-plugin">
+    <div id={wrapperId}>
       <CodeMirror
         maxHeight="87vh"
         onCreateEditor={
           () => {
-            const cmContent = document.querySelector('#ai-writer-plugin .cm-content')
+            const cmContent = document.querySelector(`#${wrapperId} .cm-content`)
             if (cmContent) {
               (cmContent as HTMLElement).style.whiteSpace = 'break-spaces';
               (cmContent as HTMLElement).style.wordBreak = 'break-word';
