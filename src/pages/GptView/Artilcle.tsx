@@ -80,7 +80,7 @@ function Article({
         <h1>{title}</h1>
 
         <div>
-          <Tooltip title={t('Regenerate')}>
+          <Tooltip title={t('Regenerate')} placement="bottom">
             <ObsidianButton
               disabled={generating}
               onClick={requestLLM}
@@ -89,7 +89,7 @@ function Article({
             </ObsidianButton>
           </Tooltip>
 
-          <Tooltip title={t('modify article template')}>
+          <Tooltip title={t('modify article template')} placement="bottom">
             <ObsidianButton
               style={{ marginLeft: '1rem' }}
               onClick={openModifyArticleFormatModal}
@@ -98,7 +98,7 @@ function Article({
             </ObsidianButton>
           </Tooltip>
 
-          <Tooltip title={t('Replace original note')}>
+          <Tooltip title={t('Replace original note')} placement="bottom">
             <ObsidianButton
               disabled={generating}
               style={{ marginLeft: '1rem' }}
