@@ -59,7 +59,7 @@ function Article({
     }
     catch (err) {
       const content = new DocumentFragment()
-      const errMessage = document.createElement('h1')
+      const errMessage = document.createElement('b')
       const hint = document.createElement('p')
       errMessage.textContent = err.message
       hint.textContent = t('Please check your API key and other settings.')

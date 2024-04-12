@@ -89,7 +89,7 @@ export class GPTSettingTab extends PluginSettingTab {
           button
             .setButtonText('Reset')
             .onClick(async () => {
-              await saveChange('baseUrl', 'https://api.openai.com', true)
+              await saveChange('baseUrl', DEFAULT_SETTINGS.baseUrl, true)
             })
         })
 
