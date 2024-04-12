@@ -51,7 +51,7 @@ function ModifyArea({ closeModel, plugin }: ModifyAreaProps) {
         <ObsidianButton
           style={{ marginLeft: '1rem' }}
           onClick={() => {
-            setArticleFormat(defaultArticleFormat)
+            setArticleFormat(defaultArticleFormat(plugin.settings.articleLanguage))
           }}
         >
           {t('Reset')}

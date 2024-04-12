@@ -3,7 +3,7 @@ import { PluginSettingTab, Setting } from 'obsidian'
 import LLMProvider from 'src/llmProvider'
 import type MyPlugin from 'src/main'
 import { defaultArticleFormat } from 'src/prompt/artileFormats/default'
-import { getObsidianLanguageCode, getObsidianNativeLanguage, languageMap } from 'src/i18n'
+import { getObsidianLanguageCode, languageMap } from 'src/i18n'
 import { t } from 'i18next'
 import type { GPTSettings } from './types'
 
@@ -12,7 +12,7 @@ export const DEFAULT_SETTINGS: GPTSettings = {
   model: 'gpt-3.5-turbo',
   apiKey: '',
   baseUrl: 'https://api.openai.com',
-  articleFormat: defaultArticleFormat,
+  articleFormat: defaultArticleFormat(),
   articleLanguage: getObsidianLanguageCode(),
 }
 
@@ -32,7 +32,7 @@ export class GPTSettingTab extends PluginSettingTab {
       refresh: boolean = false,
     ) => {
       this.plugin.settings[key] = value
-      await this.plugin.saveData(this.plugin.settings)
+      await this.plugin.saveSettings(this.plugin.settings)
       if (refresh)
         generateSettingTab()
     }

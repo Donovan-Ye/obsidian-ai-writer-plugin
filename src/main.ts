@@ -1,5 +1,5 @@
 import { Plugin } from 'obsidian'
-import { GPT_VIEW, GptView, activateGPTView, generateArticle } from 'src/pages/GptView'
+import { GPT_VIEW, GptView, generateArticle } from 'src/pages/GptView'
 import { t } from 'i18next'
 import { DEFAULT_SETTINGS, GPTSettingTab } from './pages/SettingTab'
 import type { GPTSettings } from './pages/SettingTab/types'
