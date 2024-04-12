@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import LLMProvider from 'src/llmProvider'
-import { Notice } from 'obsidian'
+import { Modal, Notice } from 'obsidian'
 import { getPrompt } from 'src/prompt'
 import { Tooltip } from 'antd'
 import { PenLine, RefreshCcw, ReplaceAll } from 'lucide-react'
@@ -58,7 +58,15 @@ function Article({
         setGenerateContent(prevMsg => prevMsg + (chunk?.choices?.[0]?.delta?.content ?? ''))
     }
     catch (err) {
-      new Notice(err.message)
+      const content = new DocumentFragment()
+      const errMessage = document.createElement('h1')
+      const hint = document.createElement('p')
+      errMessage.textContent = err.message
+      hint.textContent = t('Please check your API key and other settings.')
+
+      content.appendChild(errMessage)
+      content.appendChild(hint)
+      new Modal(this.app).setContent(content).open()
     }
     finally {
       setGenerating(false)
