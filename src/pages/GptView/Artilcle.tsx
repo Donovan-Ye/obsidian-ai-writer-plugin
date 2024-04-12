@@ -112,6 +112,7 @@ function Article({
       </div>
 
       <RefactorCodeMirror
+        editable={!generating}
         value={generateContent}
         onChange={(value) => {
           setGenerateContent(value)
