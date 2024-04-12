@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import LLMProvider from 'src/llmProvider'
-import { Modal, Notice } from 'obsidian'
+import { Modal } from 'obsidian'
 import { getPrompt } from 'src/prompt'
 import { Tooltip } from 'antd'
 import { PenLine, RefreshCcw, ReplaceAll } from 'lucide-react'
@@ -85,7 +85,7 @@ function Article({
         alignItems: 'center',
       }}
       >
-        <h1>{title}</h1>
+        <h1 className=" plg-aw-text-red-600">{title}</h1>
 
         <div>
           <Tooltip title={t('Regenerate')} placement="bottom">
