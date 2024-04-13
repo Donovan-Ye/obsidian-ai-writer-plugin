@@ -1,5 +1,5 @@
 import { Notice } from 'obsidian'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import ObsidianButton from 'src/components/ObsidianButton'
 import RefactorCodeMirror from 'src/components/RefactorCodeMirror'

@@ -7,26 +7,24 @@ function RefactorCodeMirror(props: React.ComponentProps<typeof CodeMirror>) {
   return (
     <div id={wrapperId}>
       <CodeMirror
-        onCreateEditor={
-          () => {
-            const cmContent = document.querySelector(`#${wrapperId} .cm-content`)
-            if (cmContent) {
-              (cmContent as HTMLElement).style.whiteSpace = 'break-spaces';
-              (cmContent as HTMLElement).style.wordBreak = 'break-word';
-              (cmContent as HTMLElement).style.overflowWrap = 'anywhere'
+        onCreateEditor={() => {
+          const cmContent = document.querySelector(`#${wrapperId} .cm-content`)
+          if (cmContent) {
+            (cmContent as HTMLElement).style.whiteSpace = 'break-spaces';
+            (cmContent as HTMLElement).style.wordBreak = 'break-word';
+            (cmContent as HTMLElement).style.overflowWrap = 'anywhere'
 
-              const wrapper = document.createElement('div')
-              wrapper.style.display = 'flex'
-              wrapper.style.flexDirection = 'column'
-              wrapper.style.alignItems = 'stretch'
-              wrapper.style.width = '100%'
-              wrapper.style.minHeight = '100%'
+            const wrapper = document.createElement('div')
+            wrapper.style.display = 'flex'
+            wrapper.style.flexDirection = 'column'
+            wrapper.style.alignItems = 'stretch'
+            wrapper.style.width = '100%'
+            wrapper.style.minHeight = '100%'
 
-              cmContent.parentNode?.insertBefore(wrapper, cmContent)
-              wrapper.appendChild(cmContent)
-            }
+            cmContent.parentNode?.insertBefore(wrapper, cmContent)
+            wrapper.appendChild(cmContent)
           }
-        }
+        }}
         theme={okaidia}
         {...props}
       />
