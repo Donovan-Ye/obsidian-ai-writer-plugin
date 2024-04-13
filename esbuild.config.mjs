@@ -44,7 +44,7 @@ const context = await esbuild.context({
     setup(build) {
       build.onEnd(() => {
         // eslint-disable-next-line no-console
-        console.log('[watch] rebuild CSS...')
+        console.log('[rebuild-css] build CSS...')
         exec('npm run build:css')
       })
     },
