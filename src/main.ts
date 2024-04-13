@@ -4,7 +4,6 @@ import { t } from 'i18next'
 import { DEFAULT_SETTINGS, GPTSettingTab } from './pages/SettingTab'
 import type { GPTSettings } from './pages/SettingTab/types'
 import { ArticleFormatModal } from './pages/ArticleFormatModal'
-import './main.css'
 // internationalization
 import './i18n'
 
