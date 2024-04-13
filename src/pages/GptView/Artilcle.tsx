@@ -80,7 +80,9 @@ function Article({
   return (
     <>
       <div className=" plg-aw-flex plg-aw-justify-between plg-aw-items-center">
-        <h1>{title}</h1>
+        <Tooltip title={title}>
+          <h1 className=" plg-aw-truncate">{title}</h1>
+        </Tooltip>
 
         <div className=" plg-aw-whitespace-nowrap">
           <Tooltip title={t('Regenerate')} placement="bottom">
