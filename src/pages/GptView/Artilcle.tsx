@@ -62,7 +62,7 @@ function Article({
       const errMessage = document.createElement('b')
       const hint = document.createElement('p')
       errMessage.textContent = err.message
-      hint.textContent = t('Please check your API key and other settings.')
+      hint.textContent = t('Check settings')
 
       content.appendChild(errMessage)
       content.appendChild(hint)

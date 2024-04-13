@@ -15,5 +15,6 @@
   "No content": "看起来文件里没有任何内容，请在生成之前添加一些内容吧～",
   "Default service provider": "默认服务提供商",
   "Model": "模型",
-  "Target article language": "目标文章语言"
+  "Target article language": "目标文章语言",
+  "Check settings": "请检查API key和其他设置"
 }

@@ -15,5 +15,6 @@
   "No content": "It seems there is no content in the file, please add some content before generating~",
   "Default service provider": "Default service provider",
   "Model": "Model",
-  "Target article language": "Target article language"
+  "Target article language": "Target article language",
+  "Check settings": "Please check your API key and other settings."
 }
