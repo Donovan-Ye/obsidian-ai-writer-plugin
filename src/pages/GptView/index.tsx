@@ -33,6 +33,7 @@ export class GptView extends ItemView {
     this.root?.render(
       <Article
         file={file}
+        key={Math.random()} // force re-render to re-generate article
         getSettings={this.plugin.getSettings}
         openModifyArticleFormatModal={this.plugin.openModifyArticleFormatModal}
         replaceOriginalNote={async (newContent: string) => {
