@@ -79,15 +79,10 @@ function Article({
 
   return (
     <>
-      <div style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-      }}
-      >
+      <div className=" plg-aw-flex plg-aw-justify-between plg-aw-items-center">
         <h1>{title}</h1>
 
-        <div>
+        <div className=" plg-aw-whitespace-nowrap">
           <Tooltip title={t('Regenerate')} placement="bottom">
             <ObsidianButton
               disabled={generating}
