@@ -7,7 +7,6 @@ function RefactorCodeMirror(props: React.ComponentProps<typeof CodeMirror>) {
   return (
     <div id={wrapperId}>
       <CodeMirror
-        maxHeight="87vh"
         onCreateEditor={
           () => {
             const cmContent = document.querySelector(`#${wrapperId} .cm-content`)

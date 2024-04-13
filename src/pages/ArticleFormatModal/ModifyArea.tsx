@@ -32,7 +32,7 @@ function ModifyArea({ closeModel, plugin }: ModifyAreaProps) {
 
       <RefactorCodeMirror
         value={articleFormat}
-        maxHeight="40rem"
+        maxHeight="35rem"
         onChange={(value) => {
           setArticleFormat(value)
         }}

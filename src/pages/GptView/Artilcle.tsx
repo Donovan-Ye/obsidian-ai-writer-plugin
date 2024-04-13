@@ -121,6 +121,7 @@ function Article({
       </div>
 
       <RefactorCodeMirror
+        maxHeight="83vh"
         editable={!generating}
         value={generateContent}
         onChange={(value) => {
