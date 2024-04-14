@@ -13,7 +13,7 @@ export default class MyPlugin extends Plugin {
   settings: GPTSettings
 
   async initSettings() {
-    this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData())
+    await this.saveSettings(Object.assign({}, DEFAULT_SETTINGS, await this.loadData()))
   }
 
   // use arrow function to bind this
