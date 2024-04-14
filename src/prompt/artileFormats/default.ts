@@ -1,63 +1,65 @@
 import { getObsidianLanguageCode } from 'src/i18n'
 
-const zh = `## 引言（如果有必要）
+const zh = `# [自动生成标题]
 
-从一个能够抓住读者注意力的开头开始。提供与{{标题}}相关的背景信息，并为文章的其余部分设定语境。引言部分以论点陈述结束，概述将在文章中讨论的主要点或论据。
+## [自动生成引言或背景标题]
+在这一部分，模型将基于文章的整体内容和目的，生成一个适当的标题，并简要介绍主题。
 
-## 与内容相关的小标题1
+## [自动生成子标题1]
+详细讨论文章的一个关键方面或问题。使用数据、引用或理论支持论点。
 
-- 要点1
-- 要点2
-- 要点3
+### [可选的二级子标题]
+深入分析子标题1下的特定细节或相关子主题。
 
-在这一部分包含任何相关的数据、引用或外部参考资料，以支持本节中所提出的观点。您还可以使用Markdown的功能，比如用**粗体**来强调重点或用*斜体*来表示作品的标题或重要术语。
+#### [可选的三级子标题]
+更详细地探讨二级子标题下的具体问题或数据。
 
-### 子部分（如果有必要）
+## [自动生成子标题2]
+探讨另一重要方面，可能包括对比分析、案例研究或不同的视角。
 
-讨论与主要内容1的子部分相关的具体细节，提供更深入的见解或具体实例。
+### [可选的二级子标题]
+提供更深入的讨论或额外的案例分析。
 
-## 与内容相关的小标题2
+## [更多子标题（如有需要）]
+根据文章内容的需要，继续添加更多具有自动生成子标题的段落。每个段落都应围绕一个独立的主题或论点展开。
 
-这里省略了部分内容，逻辑和[## 与内容相关的小标题1]类似
+## [自动生成结论标题]
+总结文章的主要发现或观点，强调其对读者或领域的重要性。提出可能的未来研究方向或实际应用的建议。
 
-## 总结（如果有必要）
-
-总结文章中讨论的主要观点。强调这些点如何支持引言中提出的论点陈述。以一个总结性思考或行动号召结束，促使读者更深入地思考该主题或采取某些与{{标题}}相关的行动。
-
-## 参考资料（如果有对应的链接出处）
-
-- [参考文献1](链接1)
-- [参考文献2](链接2)
+## 参考文献（如使用）
+- 引用文献1
+- 引用文献2
 `
 
-const en = `## Introduction (If necessary)
+const en = `# [Auto-generated Title]
 
-Begin with a compelling opening that captures the reader's attention. Provide background information related to {{title}} and set the context for the rest of the article. The introduction should conclude with a thesis statement outlining the main points or arguments that will be discussed in the article.
+## [Auto-generated Introduction or Background Title]
+In this section, the model will create an appropriate title based on the overall content and purpose of the article, and provide a brief introduction to the topic.
 
-## Subheading 1 Related to Content
+## [Auto-generated Subtitle 1]
+Discuss a key aspect or issue in detail. Support the arguments with data, citations, or theories.
 
-- Point 1
-- Point 2
-- Point 3
+### [Optional Secondary Subtitle]
+Delve deeper into specific details or related subtopics under Subtitle 1.
 
-Include any relevant data, quotes, or external references in this section to support the points made in this section. You can also utilize Markdown features such as **bold** to emphasize key points or *italics* to denote titles of works or important terms.
+#### [Optional Tertiary Subtitle]
+Explore specific issues or data in more detail under the secondary subtitle.
 
-### Subsection (If necessary)
+## [Auto-generated Subtitle 2]
+Explore another significant aspect, which may include comparative analyses, case studies, or different perspectives.
 
-Discuss specific details related to Subheading 1, providing further insights or specific examples.
+### [Optional Secondary Subtitle]
+Provide deeper discussions or additional case studies.
 
-## Subheading 2 Related to Content
+## [More Subtitles as Needed]
+Continue adding more sections with auto-generated subtitles as required by the content of the article. Each section should revolve around a separate theme or argument.
 
-Some content is omitted here, the logic is similar to [## Subheading 1 Related to Content]
+## [Auto-generated Conclusion Title]
+Summarize the main findings or perspectives of the article, emphasizing their importance to the reader or the field. Suggest possible future research directions or practical applications.
 
-## Conclusion (If necessary)
-
-Summarize the main points discussed in the article. Emphasize how these points support the thesis statement presented in the introduction. End with a concluding thought or call to action that prompts readers to think more deeply about the topic or take some action related to {{title}}.
-
-## References (if corresponding links are available)
-
-- [Reference 1](Link1)
-- [Reference 2](Link2)
+## References (if used)
+- Reference 1
+- Reference 2
 `
 
 const defaultArticleFormatMap = new Map([
