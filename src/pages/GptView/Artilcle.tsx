@@ -78,7 +78,7 @@ function Article({
   }, [])
 
   return (
-    <>
+    <div className=" plg-aw-h-full">
       <div className=" plg-aw-flex plg-aw-justify-between plg-aw-items-center">
         <Tooltip title={title}>
           <h1 className=" plg-aw-truncate">{title}</h1>
@@ -118,7 +118,7 @@ function Article({
       </div>
 
       <RefactorCodeMirror
-        maxHeight="80vh"
+        maxHeight="calc(100vh - 10rem)"
         editable={!generating}
         value={generateContent}
         onChange={(value) => {
@@ -133,7 +133,7 @@ function Article({
           </div>
         )
       }
-    </>
+    </div>
   )
 }
 
