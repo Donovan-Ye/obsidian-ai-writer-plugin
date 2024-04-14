@@ -1,7 +1,7 @@
 {
   "id": "obsidian-ai-writer-plugin",
   "name": "obsidian-ai-writer-plugin",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "minAppVersion": "0.15.0",
   "description": "A plugin for Obsidian that uses AI to help you write better and faster.",
   "author": "Donovan Ye",
