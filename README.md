@@ -2,6 +2,10 @@
 
 This plugin is an AI writer for Obsidian. It simplely uses the LLM APIs(now only support OpenAI) to generate articles based on knowledge fragments.
 
+## Example
+
+https://github.com/Donovan-Ye/obsidian-ai-writer-plugin/assets/72693206/4863f2d6-2788-4ac0-86ad-bdfb8955683c
+
 ## 🚀 Features
 
 - Generate articles based on knowledge fragments in your notes.
