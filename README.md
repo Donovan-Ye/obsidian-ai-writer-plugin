@@ -1,5 +1,9 @@
 # Obsidian AI-writer plugin
 
+<div align="center">
+  <img src="https://github.com/Donovan-Ye/obsidian-ai-writer-plugin/assets/72693206/458373cf-c40c-4946-9fc8-41ea085e95df" alt="Alt text" width="400" height="400">
+</div>
+
 This plugin is an AI writer for Obsidian. It simplely uses the LLM APIs(now only support OpenAI) to generate articles based on knowledge fragments.
 
 ## Example
