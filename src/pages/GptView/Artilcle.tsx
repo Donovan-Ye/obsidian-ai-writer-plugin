@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import LLMProvider from 'src/llmProvider'
+import LLMProvider from 'llm-provider'
 import { Modal } from 'obsidian'
 import { getPrompt } from 'src/prompt'
 import { Tooltip } from 'antd'

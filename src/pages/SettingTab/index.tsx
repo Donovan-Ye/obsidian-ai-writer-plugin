@@ -1,6 +1,6 @@
 import type { App } from 'obsidian'
 import { PluginSettingTab, Setting } from 'obsidian'
-import LLMProvider from 'src/llmProvider'
+import LLMProvider from 'llm-provider'
 import type MyPlugin from 'src/main'
 import { defaultArticleFormat } from 'src/prompt/artileFormats/default'
 import { getObsidianLanguageCode, languageMap } from 'src/i18n'
