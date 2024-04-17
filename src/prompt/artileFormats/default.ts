@@ -27,8 +27,8 @@ const zh = `# [自动生成标题]
 总结文章的主要发现或观点，强调其对读者或领域的重要性。提出可能的未来研究方向或实际应用的建议。
 
 ## 参考文献（如使用）
-- 引用文献1
-- 引用文献2
+- [引用文献1](引用地址1)
+- [引用文献2](引用地址2)
 `
 
 const en = `# [Auto-generated Title]
@@ -58,8 +58,8 @@ Continue adding more sections with auto-generated subtitles as required by the c
 Summarize the main findings or perspectives of the article, emphasizing their importance to the reader or the field. Suggest possible future research directions or practical applications.
 
 ## References (if used)
-- Reference 1
-- Reference 2
+- [Citation 1](Citation URL 1)
+- [Citation 2](Citation URL 2)
 `
 
 const defaultArticleFormatMap = new Map([
