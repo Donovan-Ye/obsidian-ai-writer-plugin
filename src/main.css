@@ -16,3 +16,17 @@
   50%  {box-shadow: 19px 0 0 3px, 38px 0 0 7px, 57px 0 0 3px}
   100% {box-shadow: 19px 0 0 0  , 38px 0 0 3px, 57px 0 0 7px}
 }
+
+.refactored-CM .refactored-CM-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  min-height: 100%;
+}
+
+.refactored-CM .cm-content {
+  white-space: break-spaces;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}

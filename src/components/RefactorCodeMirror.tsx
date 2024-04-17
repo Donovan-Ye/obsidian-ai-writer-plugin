@@ -5,21 +5,14 @@ function RefactorCodeMirror(props: React.ComponentProps<typeof CodeMirror>) {
   // Generate a unique id for each CodeMirror instance. Use Date is a simple way XD.
   const wrapperId = `ai-writer-plugin-CM-${Date.now()}`
   return (
-    <div id={wrapperId}>
+    <div id={wrapperId} className="refactored-CM">
       <CodeMirror
         onCreateEditor={() => {
           const cmContent = document.querySelector(`#${wrapperId} .cm-content`)
           if (cmContent) {
-            (cmContent as HTMLElement).style.whiteSpace = 'break-spaces';
-            (cmContent as HTMLElement).style.wordBreak = 'break-word';
-            (cmContent as HTMLElement).style.overflowWrap = 'anywhere'
-
             const wrapper = document.createElement('div')
-            wrapper.style.display = 'flex'
-            wrapper.style.flexDirection = 'column'
-            wrapper.style.alignItems = 'stretch'
-            wrapper.style.width = '100%'
-            wrapper.style.minHeight = '100%'
+
+            wrapper.className = 'refactored-CM-wrapper'
 
             cmContent.parentNode?.insertBefore(wrapper, cmContent)
             wrapper.appendChild(cmContent)
