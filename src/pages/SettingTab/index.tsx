@@ -1,7 +1,7 @@
 import type { App } from 'obsidian'
 import { PluginSettingTab, Setting } from 'obsidian'
 import LLMProvider from 'llm-provider'
-import type MyPlugin from 'src/main'
+import type AIWriterPlugin from 'src/main'
 import { defaultArticleFormat } from 'src/prompt/artileFormats/default'
 import { getObsidianLanguageCode, languageMap } from 'src/i18n'
 import { t } from 'i18next'
@@ -17,9 +17,9 @@ export const DEFAULT_SETTINGS: GPTSettings = {
 }
 
 export class GPTSettingTab extends PluginSettingTab {
-  plugin: MyPlugin
+  plugin: AIWriterPlugin
 
-  constructor(app: App, plugin: MyPlugin) {
+  constructor(app: App, plugin: AIWriterPlugin) {
     super(app, plugin)
     this.plugin = plugin
   }

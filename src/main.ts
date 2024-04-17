@@ -9,7 +9,7 @@ import './i18n'
 
 const generateArticleHint = t('Generate new article')
 
-export default class MyPlugin extends Plugin {
+export default class AIWriterPlugin extends Plugin {
   settings: GPTSettings
 
   async initSettings() {

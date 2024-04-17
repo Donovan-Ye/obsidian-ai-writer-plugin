@@ -3,12 +3,12 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import ObsidianButton from 'src/components/ObsidianButton'
 import RefactorCodeMirror from 'src/components/RefactorCodeMirror'
-import type MyPlugin from 'src/main'
+import type AIWriterPlugin from 'src/main'
 import { defaultArticleFormat } from 'src/prompt/artileFormats/default'
 
 interface ModifyAreaProps {
   closeModel: () => void
-  plugin: MyPlugin
+  plugin: AIWriterPlugin
 }
 
 function ModifyArea({ closeModel, plugin }: ModifyAreaProps) {

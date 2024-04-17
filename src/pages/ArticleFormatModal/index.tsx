@@ -1,14 +1,14 @@
 import type { App } from 'obsidian'
 import { Modal } from 'obsidian'
 import { type Root, createRoot } from 'react-dom/client'
-import type MyPlugin from 'src/main'
+import type AIWriterPlugin from 'src/main'
 import ModifyArea from './ModifyArea'
 
 export class ArticleFormatModal extends Modal {
   root: Root | null = null
-  plugin: MyPlugin
+  plugin: AIWriterPlugin
 
-  constructor(app: App, plugin: MyPlugin) {
+  constructor(app: App, plugin: AIWriterPlugin) {
     super(app)
     this.plugin = plugin
   }

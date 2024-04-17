@@ -2,7 +2,7 @@ import type { App, TAbstractFile, WorkspaceLeaf } from 'obsidian'
 import { ItemView, Notice } from 'obsidian'
 import type { Root } from 'react-dom/client'
 import { createRoot } from 'react-dom/client'
-import type MyPlugin from 'src/main'
+import type AIWriterPlugin from 'src/main'
 import { t } from 'i18next'
 import Article from './Artilcle'
 
@@ -10,9 +10,9 @@ export const GPT_VIEW = 'gpt-view'
 
 export class GptView extends ItemView {
   root: Root | null = null
-  plugin: MyPlugin
+  plugin: AIWriterPlugin
 
-  constructor(leaf: WorkspaceLeaf, plugin: MyPlugin) {
+  constructor(leaf: WorkspaceLeaf, plugin: AIWriterPlugin) {
     super(leaf)
     this.plugin = plugin
   }
