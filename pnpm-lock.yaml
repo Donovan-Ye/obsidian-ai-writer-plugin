@@ -18,8 +18,8 @@ dependencies:
     specifier: ^23.11.1
     version: 23.11.1
   llm-provider:
-    specifier: ^0.0.2
-    version: 0.0.2
+    specifier: ^0.0.4
+    version: 0.0.4
   lucide-react:
     specifier: ^0.367.0
     version: 0.367.0(react@18.2.0)
@@ -3288,8 +3288,8 @@ packages:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
     dev: true
 
-  /llm-provider@0.0.2:
-    resolution: {integrity: sha512-VVrm9AhlYlH26DqpwYhiKHXSfml7x0W+d6ZkK5PDZFRMLPRdfdVDGoWOT9Khk8aRHxqND1j4U+7H/2EAZrMWgQ==}
+  /llm-provider@0.0.4:
+    resolution: {integrity: sha512-S0n2pXZZ5CU64LQBEXRjOGRbYN/zRMLESX8Vd/lKwH0TuqL24o9+qbMG2vg6o5a/8O//rP+rLey8IFz8hxFJwQ==}
     dependencies:
       openai: 4.35.0
     transitivePeerDependencies:

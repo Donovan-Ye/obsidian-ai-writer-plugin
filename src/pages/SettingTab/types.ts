@@ -1,4 +1,4 @@
-import type { ProviderConfig } from 'src/llmProvider/types'
+import type { ProviderConfig } from 'llm-provider'
 
 export type GPTSettings = ProviderConfig & {
   articleFormat: string

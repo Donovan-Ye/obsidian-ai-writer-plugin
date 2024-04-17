@@ -1,6 +1,6 @@
 {
   "name": "ai-writer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A plugin for Obsidian that uses AI to help you write better and faster.",
   "author": "Donovan Ye",
   "license": "MIT",
@@ -23,7 +23,7 @@
     "@uiw/react-codemirror": "^4.21.25",
     "antd": "^5.16.1",
     "i18next": "^23.11.1",
-    "llm-provider": "^0.0.2",
+    "llm-provider": "^0.0.4",
     "lucide-react": "^0.367.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
