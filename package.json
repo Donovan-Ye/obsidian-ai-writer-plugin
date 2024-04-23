@@ -1,7 +1,7 @@
 {
   "name": "ai-writer",
   "version": "1.0.2",
-  "description": "A plugin for Obsidian that uses AI to help you write better and faster.",
+  "description": "Use AI to generate high-quality articles with knowledge fragments.",
   "author": "Donovan Ye",
   "license": "MIT",
   "repository": {
