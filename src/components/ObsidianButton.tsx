@@ -1,7 +1,7 @@
-function ObsidianButton({ children, ...restProps }: React.PropsWithChildren<any>) {
+function ObsidianButton({ children, className, ...restProps }: React.PropsWithChildren<React.ButtonHTMLAttributes<HTMLButtonElement>>) {
   return (
     <button
-      className="mod-cta"
+      className={`mod-cta ${className}`}
       {...restProps}
     >
       {children}

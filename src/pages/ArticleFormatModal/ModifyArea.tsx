@@ -28,7 +28,7 @@ function ModifyArea({ closeModel, plugin }: ModifyAreaProps) {
 
   return (
     <div>
-      <h1 style={{ marginTop: 0 }}>{t('Modify article template')}</h1>
+      <h1 className="plg-aw-mt-0">{t('Modify article template')}</h1>
 
       <RefactorCodeMirror
         value={articleFormat}
@@ -38,18 +38,13 @@ function ModifyArea({ closeModel, plugin }: ModifyAreaProps) {
         }}
       />
 
-      <div style={{
-        display: 'flex',
-        justifyContent: 'flex-end',
-        marginTop: '1rem',
-      }}
-      >
+      <div className=" plg-aw-flex plg-aw-justify-end plg-aw-mt-4">
         <ObsidianButton onClick={closeModel}>
           {t('Cancel')}
         </ObsidianButton>
 
         <ObsidianButton
-          style={{ marginLeft: '1rem' }}
+          className=" plg-aw-ml-4"
           onClick={() => {
             setArticleFormat(defaultArticleFormat(plugin.settings.articleLanguage))
           }}
@@ -58,7 +53,7 @@ function ModifyArea({ closeModel, plugin }: ModifyAreaProps) {
         </ObsidianButton>
 
         <ObsidianButton
-          style={{ marginLeft: '1rem' }}
+          className=" plg-aw-ml-4"
           onClick={saveArticleFormat}
         >
           {t('Save')}

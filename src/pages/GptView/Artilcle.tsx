@@ -96,7 +96,7 @@ function Article({
 
           <Tooltip title={t('modify article template')} placement="bottom">
             <ObsidianButton
-              style={{ marginLeft: '1rem' }}
+              className=" plg-aw-ml-4"
               onClick={openModifyArticleFormatModal}
             >
               <PenLine size={14} />
@@ -106,7 +106,7 @@ function Article({
           <Tooltip title={t('Replace original note')} placement="bottom">
             <ObsidianButton
               disabled={generating}
-              style={{ marginLeft: '1rem' }}
+              className=" plg-aw-ml-4"
               onClick={() => {
                 replaceOriginalNote(generateContent)
               }}
