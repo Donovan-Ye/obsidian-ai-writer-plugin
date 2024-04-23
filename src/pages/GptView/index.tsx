@@ -22,7 +22,7 @@ export class GptView extends ItemView {
   }
 
   getDisplayText() {
-    return 'GPT view'
+    return 'GPT'
   }
 
   async onOpen() {
