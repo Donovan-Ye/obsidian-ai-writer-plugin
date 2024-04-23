@@ -1,10 +1,11 @@
 {
   "id": "ai-writer",
   "name": "ai-writer",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "minAppVersion": "1.5.12",
   "description": "Use AI to generate high-quality articles with knowledge fragments.",
   "author": "Donovan Ye",
   "authorUrl": "https://github.com/Donovan-Ye",
-  "isDesktopOnly": false
+  "isDesktopOnly": false,
+  "fundingUrl": "waiting to be created..."
 }
